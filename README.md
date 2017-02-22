@@ -1,3 +1,12 @@
+To build .jar of ExoPlayer library, follow these steps:
+
+1. Open project in Android Studio
+2. Build. If you have already built before I'd recommend deleting the build folder before doing this.
+3. On the commandline, run `gradlew makeJar`.
+4. .jar will be in library/build/outputs
+
+* * * 
+
 # ExoPlayer #
 
 ExoPlayer is an application level media player for Android. It provides an
