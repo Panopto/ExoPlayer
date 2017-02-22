@@ -161,6 +161,7 @@ public class HlsChunkSource implements HlsTrackSelector.Output {
   private byte[] scratchSpace;
   private boolean live;
   private long durationUs;
+  private long broadcastDurationUs;
   private IOException fatalError;
 
   private Uri encryptionKeyUri;
@@ -324,6 +325,17 @@ public class HlsChunkSource implements HlsTrackSelector.Output {
    */
   public long getDurationUs() {
     return durationUs;
+  }
+
+  /**
+   * Returns the duration of the broadcast from the start
+   * <p>
+   * This method should only be called after the source has been prepared.
+   *
+   * @return The duration from the start in microseconds.
+   */
+  public long getBroadcastDurationUs() {
+    return broadcastDurationUs;
   }
 
   /**
@@ -832,6 +844,7 @@ public class HlsChunkSource implements HlsTrackSelector.Output {
     variantPlaylists[variantIndex] = mediaPlaylist;
     live |= mediaPlaylist.live;
     durationUs = live ? C.UNKNOWN_TIME_US : mediaPlaylist.durationUs;
+    broadcastDurationUs = mediaPlaylist.durationUs;
   }
 
   private boolean allVariantsBlacklisted() {

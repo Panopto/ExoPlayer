@@ -81,3 +81,14 @@ publish {
     description = 'The ExoPlayer library.'
     website = 'https://github.com/google/ExoPlayer'
 }
+
+task clearJar(type: Delete) {
+    delete 'build/outputs/exoplayer-1.5.9.jar'
+}
+
+task makeJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('build/outputs/')
+    include('classes.jar')
+    rename ('classes.jar', 'exoplayer-1.5.9.jar')
+}
